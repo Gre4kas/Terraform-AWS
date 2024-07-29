@@ -1,0 +1,31 @@
+# Директории и файлы Terraform, которые нужно игнорировать
+
+# Локальные директории Terraform
+.terraform/
+*.terraform.lock.hcl
+# Файлы состояния
+*.tfstate
+*.tfstate.*
+
+# Логи сбоев
+crash.log
+crash.*.log
+
+# Файлы переменных окружения, содержащие чувствительные данные
+*.tfvars
+*.tfvars.json
+
+# Переопределяющие файлы, используемые для локальных изменений
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Временные файлы блокировок
+terraform.tfstate.lock.info
+
+# Файлы планов Terraform
+*tfplan*
+
+# Конфигурационные файлы CLI
+terraform.rc
