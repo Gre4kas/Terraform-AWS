@@ -6,7 +6,7 @@ resource "aws_s3_bucket" "terraform_state" {
   bucket = "gre4ka-terraform-state"
 
   lifecycle {
-    prevent_destroy = true
+    prevent_destroy = false # If you delete s3, write false 
   }
 }
 
@@ -45,22 +45,18 @@ resource "aws_dynamodb_table" "terraform_state" {
   }
 }
 
-terraform {
-  backend "s3" {
-    key = "global/s3/terraform.tfstate"
-  }
-}
+# To remove s3 you need to comment it out
+# terraform {
+#   backend "s3" {
+#     key = "global/s3/terraform.tfstate"
+#   }
+# }
 
-output "aws_s3_bucket_arn" {
-  value       = aws_s3_bucket.terraform_state.arn
-  description = "The ARN of the s3 bucket"
-}
-
-output "dynamodb_table_name" {
-  value       = aws_dynamodb_table.terraform_state.name
-  description = "The name of the DynamoDB table"
-}
-
+# terraform {
+#   backend "local" {
+#     path ="terraform.tfstate"
+#   }
+# }
 
 
 
